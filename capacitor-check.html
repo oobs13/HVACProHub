@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#FF8800">
+    <link rel="stylesheet" href="style.css">
+    <title>⚡ Capacitor Check</title>
+</head>
+<body id="body-tag">
+
+<nav>
+    <p class="logo">⚡ HVACProHub</p>
+    <ul class="nav-links">
+        <li><a href="index.html" data-key="home">Home</a></li>
+        <li class="dropdown-parent">
+            <a href="#" data-key="tools">Tools ▼</a>
+            <div class="dropdown-menu">
+                <a href="capacitor-check.html" data-key="cap_check">Capacitor Check</a>
+                <a href="run-cap-calc.html" data-key="run_cap">Running Capacitor Calculator</a>
+                <a href="compressor-id.html" data-key="comp_id">Compressor Terminal ID</a>
+                <a href="charging-calc.html" data-key="sub_cool">Sub-Cool & Super-Heat</a>
+                <a href="load-analyzer.html" data-key="load_calc">Load & Electrical Analyzer</a>
+            </div>
+        </li>
+        <li><button id="lang-switch" class="lang-btn">العربية</button></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="header-section">
+        <h1 data-key="cap_check">⚡ Capacitor Check</h1>
+        <p class="subtitle">Interactive Tool | Electrical Analysis</p>
+    </div>
+
+    <div class="form-grid">
+        <div>
+            <label data-key="voltage">Voltage (V)</label>
+            <select id="voltage">
+                <option value="120">120</option>
+                <option value="208">208</option>
+                <option value="240">240</option>
+            </select>
+        </div>
+        <div>
+            <label data-key="Measured_Capacitance">Measured Capacitance (uF)</label>
+            <input type="number" id="measured" placeholder="e.g., 50">
+        </div>
+        <div>
+            <label data-key="tolerance">Tolerance (%)</label>
+            <input type="number" id="tolerance" placeholder="e.g., 5">
+        </div>
+        <div>
+            <label data-key="rated">Rated Capacitance (uF)</label>
+            <input type="number" id="rated" placeholder="e.g., 50">
+        </div>
+    </div>
+
+    <button data-key="capacitor_check"class="calculate-btn" onclick="analyzeCapacitor()">⚡ Check Capacitor</button>
+
+    <div class="result-box" id="resultBox">
+        <div style="text-transform:uppercase; letter-spacing: 1px; font-size: 0.8rem; color: #ccbba6;">Analysis Result</div>
+        <div class="res-val" id="statusResult">Status</div>
+        <div id="detailsText" style="margin-top:10px;font-size:0.9rem;color:#fff;"></div>
+
+        <button class="calculate-btn" onclick="printResult()" style="margin-top:20px;background: var(--primary); color:#000;">
+            🖨️ Print Result
+        </button>
+    </div>
+
+    <div class="footer">
+        <p data-key="capacitor_warning">⚠️ <strong>DANGER:</strong> Ensure capacitor is <u>fully discharged</u> before testing to prevent electrical shock.</p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+<script>
+// Keep your tool-specific logic here
+function analyzeCapacitor() {
+    const voltage = parseInt(document.getElementById('voltage').value);
+    const measured = parseFloat(document.getElementById('measured').value);
+    const tolerance = parseFloat(document.getElementById('tolerance').value);
+    const rated = parseFloat(document.getElementById('rated').value);
+
+    if(isNaN(measured) || measured <=0 || isNaN(tolerance) || tolerance<0 || isNaN(rated) || rated<=0){
+        alert("Please enter valid numbers for all fields.");
+        return;
+    }
+
+    const tolRange = rated * (tolerance/100);
+    const min = rated - tolRange;
+    const max = rated + tolRange;
+    const status = (measured < min || measured > max) ? "REPLACE" : "GOOD";
+
+    const statusEl = document.getElementById("statusResult");
+    statusEl.innerText = status;
+    statusEl.style.color = (status==="GOOD") ? "var(--green)" : "var(--red)";
+
+    document.getElementById("resultBox").style.display="block";
+
+    document.getElementById("detailsText").innerHTML = `
+        <div class="detail-row"><span class="label">Voltage</span><span class="value">${voltage} V</span></div>
+        <div class="detail-row"><span class="label">Rated Capacitance</span><span class="value">${rated} uF</span></div>
+        <div class="detail-row"><span class="label">Measured Capacitance</span><span class="value">${measured} uF</span></div>
+        <div class="detail-row"><span class="label">Tolerance</span><span class="value">±${tolerance}%</span></div>
+        <div class="detail-row"><span class="label">Acceptable Range</span><span class="value">${min.toFixed(2)} - ${max.toFixed(2)} uF</span></div>
+        <div class="detail-row"><span class="label">Action</span><span class="value ${status==="REPLACE"?"replace":""}">${status}</span></div>
+    `;
+
+    document.getElementById("resultBox").scrollIntoView({behavior:'smooth'});
+}
+
+function printResult() {
+    if(document.getElementById("resultBox").style.display==="none" || document.getElementById("resultBox").style.display===""){
+        alert("No result to print! Please check a capacitor first.");
+        return;
+    }
+    window.print();
+}
+</script>
+</body>
+</html>

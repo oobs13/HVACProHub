@@ -1,0 +1,315 @@
+/* ==========================================
+   GLOBAL VARIABLES & RESET
+   ========================================== */
+:root {
+    --primary: #FF8800;
+    --secondary: #f7e8d6;
+    --bg: #120e0a;
+    --card-bg: #1e1b18;
+    --text: #ffffff;
+    --input-bg: #2d2824;
+    --border: #4d443c;
+    --green: #4CAF50;
+    --red: #f44336;
+    
+    /* Responsive Scaling */
+    --nav-height: 70px;
+    --page-padding: clamp(0.75rem, 3vw, 1.5rem);
+    --container-max: 800px;
+    --border-radius: clamp(0.5rem, 2vw, 1.25rem);
+    --card-radius: clamp(0.75rem, 2.5vw, 1.5rem);
+    --spacing-md: clamp(0.6rem, 2vw, 1rem);
+    --spacing-xl: clamp(1.5rem, 4vw, 2.5rem);
+    --font-xlarge: clamp(1.5rem, 4vw, 2.5rem);
+    --font-large: clamp(1.1rem, 3vw, 1.5rem);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(circle at center, #1e1b18 0%, #000000 100%);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ==========================================
+   NAVIGATION & FOOTER
+   ========================================== */
+/* ==========================================
+   CLEAN NAVBAR SYSTEM
+   ========================================== */
+nav {
+    height: var(--nav-height);
+    background: rgba(30, 27, 24, 0.98);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between; /* Logo left, Links right */
+    align-items: center;
+    padding: 0 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 10px; /* Space between nav items */
+}
+
+.nav-links a {
+    color: var(--text); /* Forces it to White */
+    text-decoration: none; /* Removes the blue underline */
+}
+
+.nav-links a:hover {
+    color: var(--primary); /* Turns Orange on hover */
+}
+
+/* THE DROPDOWN FIX */
+.dropdown-parent {
+    position: relative; /* This is the anchor */
+}
+
+.dropdown-menu {
+    display: none; /* Hide by default */
+    position: absolute;
+    top: 100%; /* Directly below the parent */
+    right: 0; /* Align to the right edge of "Tools" */
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    min-width: 260px;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+}
+
+.dropdown-parent:hover .dropdown-menu {
+    display: flex; /* Show on hover */
+}
+
+.dropdown-menu a {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(255, 136, 0, 0.1);
+}
+
+/* LANGUAGE BUTTON FIX */
+.lang-btn {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    margin-left: 15px;
+}
+
+.lang-btn:hover {
+    background: var(--primary);
+    color: #000;
+}
+
+/* RTL ADJUSTMENT (When Arabic is active) */
+[dir="rtl"] .nav-links {
+    flex-direction: row-reverse;
+}
+[dir="rtl"] .dropdown-menu {
+    right: auto;
+    left: 0;
+}
+
+ .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+
+
+
+
+footer {
+    background: #0a0806;
+    border-top: 1px solid var(--border);
+    padding: 40px 5% 20px;
+    margin-top: auto;
+    text-align: center;
+}
+
+ .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-section h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #887a6d;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: #554d45;
+            font-size: 0.8rem;
+        }
+
+
+/* ==========================================
+   LAYOUT & FORM COMPONENTS
+   ========================================== */
+.container {
+    background: rgba(30,27,24,0.9);
+    backdrop-filter: blur(20px);
+    padding: var(--spacing-xl);
+    border-radius: var(--card-radius);
+    max-width: var(--container-max);
+    width: 95%; /* Better for mobile */
+    margin: 40px auto;
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 80px rgba(0,0,0,0.8);
+}
+
+.header-section { text-align: center; margin-bottom: var(--spacing-xl); }
+.header-section h1 {
+    background: linear-gradient(45deg, var(--primary), var(--secondary), var(--primary));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: var(--font-large);
+    font-weight: 800;
+    animation: shimmer 3s linear infinite;
+}
+/* index page about*/
+ .about-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .about-section p {
+            font-size: 1.15rem;
+            color: #ccbba6;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+
+
+@keyframes shimmer { 100% { background-position: 200% center; } }
+
+.form-grid { display: grid; grid-template-columns: 1fr; gap: var(--spacing-md); }
+@media (min-width:600px){ .form-grid { grid-template-columns: 1fr 1fr; } }
+
+label { display: block; margin-bottom: 5px; color: #ccbba6; font-size: 0.9rem; }
+input, select { 
+    width: 100%; 
+    padding: 12px; 
+    background: var(--input-bg); 
+    border: 1px solid var(--border); 
+    border-radius: var(--border-radius); 
+    color: #fff; 
+}
+
+.calculate-btn { 
+    width: 100%; 
+    padding: var(--spacing-md); 
+    margin-top: 1rem; 
+    background: linear-gradient(45deg, var(--secondary), var(--primary)); 
+    color: #000; 
+    border: none; 
+    border-radius: var(--border-radius); 
+    font-weight: 800; 
+    cursor: pointer; 
+    transition: transform 0.2s;
+}
+
+.calculate-btn:active { transform: scale(0.98); }
+
+/* ==========================================
+   DIAGNOSTIC RESULTS BOX
+   ========================================== */
+.result-box {
+    margin-top: 1.5rem;
+    padding: var(--spacing-xl);
+    background: rgba(0,0,0,0.4);
+    border-radius: var(--card-radius);
+    border: 1px solid var(--primary);
+    display: none;
+    text-align: center;
+}
+
+.res-val { font-size: var(--font-xlarge); font-weight: 900; margin: 10px 0; }
+.detail-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.detail-row:last-child { border-bottom: none; }
+.value.replace { color: var(--red); font-weight: bold; }
+
+/* ==========================================
+   PRINT STYLES (The Report)
+   ========================================== */
+@media print {
+    nav, .nav-links, .calculate-btn, footer, .header-section, .form-grid { display: none !important; }
+    body { background: white !important; color: black !important; padding: 0; }
+    .container { border: none !important; box-shadow: none !important; background: white !important; width: 100% !important; max-width: 100%; }
+    
+    .result-box {
+        display: block !important;
+        border: 2px solid var(--primary) !important;
+        color: black !important;
+        padding: 2rem;
+    }
+    .result-box::before {
+        content: "📝 HVAC PRO DIAGNOSTIC REPORT";
+        display: block; font-size: 1.5rem; font-weight: 700; color: var(--primary); margin-bottom: 1rem;
+    }
+    .detail-row { border-bottom: 1px solid #ddd !important; color: black !important; }
+}
