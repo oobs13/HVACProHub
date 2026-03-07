@@ -60,10 +60,10 @@
 
     <div class="result-box" id="resultBox">
         <div  data-key="analysis_result"  style="text-transform:uppercase; letter-spacing: 1px; font-size: 0.8rem; color: #ccbba6;">Analysis Result</div>
-        <div class="res-val" id="statusResult">Status</div>
-        <div id="detailsText" style="margin-top:10px;font-size:0.9rem;color:#fff;"></div>
+        <div    class="res-val" id="statusResult">Status</div>
+        <div data-key="status"   id="detailsText" style="margin-top:10px;font-size:0.9rem;color:#fff;"></div>
 
-        <button class="calculate-btn" onclick="printResult()" style="margin-top:20px;background: var(--primary); color:#000;">
+        <button    class="calculate-btn" onclick="printResult()" style="margin-top:20px;background: var(--primary); color:#000;">
             🖨️ Print Result
         </button>
     </div>
@@ -83,6 +83,8 @@ function analyzeCapacitor() {
     const tolerance = parseFloat(document.getElementById('tolerance').value);
     const rated = parseFloat(document.getElementById('rated').value);
 
+
+    
     if(isNaN(measured) || measured <=0 || isNaN(tolerance) || tolerance<0 || isNaN(rated) || rated<=0){
         alert("Please enter valid numbers for all fields.");
         return;

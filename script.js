@@ -21,6 +21,9 @@ const translations = {
         capacitor_check:"capacitor-check",
         capacitor_warning:"⚠️ DANGER:Ensure capacitor is fully discharged  before testing to prevent electrical shock.",
         analysis_result:"Analysis Result",
+        status:"Status",
+
+
     },
     ar: {
         home: "الرئيسية",
@@ -43,7 +46,8 @@ const translations = {
         rated:"القيمه الاصليه من المصنع",
         capacitor_check:"افحص",
         capacitor_warning:"⚠️ تحذير مهم : تأكد من تفريغ شحنة المكثف تماماً قبل البدء بالفحص لتجنب الصعق الكهربائي.",
-        analysis_result:"نتيجة الفحص"
+        analysis_result:"نتيجة الفحص",
+        status:"الحاله",
         }
 };
 
