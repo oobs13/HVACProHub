@@ -31,21 +31,20 @@ body {
     background: radial-gradient(circle at center, #1e1b18 0%, #000000 100%);
     color: var(--text);
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
 }
 
 /* ==========================================
-   NAVIGATION & FOOTER
-   ========================================== */
-/* ==========================================
-   CLEAN NAVBAR SYSTEM
+   NAVIGATION SYSTEM (Navbar & Dropdown)
    ========================================== */
 nav {
     height: var(--nav-height);
     background: rgba(30, 27, 24, 0.98);
     border-bottom: 1px solid var(--border);
     display: flex;
-    justify-content: space-between; /* Logo left, Links right */
+    justify-content: space-between;
     align-items: center;
     padding: 0 5%;
     position: sticky;
@@ -54,57 +53,69 @@ nav {
     backdrop-filter: blur(10px);
 }
 
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    text-decoration: none;
+    letter-spacing: -1px;
+}
+
 .nav-links {
     display: flex;
     align-items: center;
     list-style: none;
-    gap: 10px; /* Space between nav items */
+    gap: 10px;
+    height: 100%;
 }
 
 .nav-links a {
-    color: var(--text); /* Forces it to White */
-    text-decoration: none; /* Removes the blue underline */
+    color: var(--text);
+    text-decoration: none;
+    padding: 0 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s;
 }
 
-.nav-links a:hover {
-    color: var(--primary); /* Turns Orange on hover */
-}
+.nav-links a:hover { color: var(--primary); }
 
-/* THE DROPDOWN FIX */
 .dropdown-parent {
-    position: relative; /* This is the anchor */
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .dropdown-menu {
-    display: none; /* Hide by default */
+    display: none;
     position: absolute;
-    top: 100%; /* Directly below the parent */
-    right: 0; /* Align to the right edge of "Tools" */
+    top: 100%;
+    right: 0;
     background: var(--card-bg);
     border: 1px solid var(--border);
-    min-width: 260px;
+    min-width: 320px;
     flex-direction: column;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     border-radius: 0 0 8px 8px;
     overflow: hidden;
 }
 
-.dropdown-parent:hover .dropdown-menu {
-    display: flex; /* Show on hover */
-}
+.dropdown-parent:hover .dropdown-menu { display: flex; }
 
 .dropdown-menu a {
-    padding: 12px 20px;
+    padding: 15px 20px;
     border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: var(--text);
+    text-decoration: none;
     font-size: 0.9rem;
     width: 100%;
 }
 
-.dropdown-menu a:hover {
-    background: rgba(255, 136, 0, 0.1);
+.dropdown-menu a:hover { 
+    background: rgba(255, 136, 0, 0.1); 
+    color: var(--primary); 
 }
 
-/* LANGUAGE BUTTON FIX */
 .lang-btn {
     background: transparent;
     border: 1px solid var(--primary);
@@ -114,6 +125,7 @@ nav {
     cursor: pointer;
     font-size: 0.85rem;
     margin-left: 15px;
+    transition: 0.3s;
 }
 
 .lang-btn:hover {
@@ -121,89 +133,94 @@ nav {
     color: #000;
 }
 
-/* RTL ADJUSTMENT (When Arabic is active) */
-[dir="rtl"] .nav-links {
-    flex-direction: row-reverse;
-}
-[dir="rtl"] .dropdown-menu {
-    right: auto;
-    left: 0;
+/* ==========================================
+   HERO & SHARED ANIMATIONS
+   ========================================== */
+.hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
 }
 
- .hero {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            margin-bottom: 2rem;
-                      font-weight: 800;
-             background: linear-gradient(45deg, var(--primary), var(--secondary), var(--primary));
+.hero h1, .header-section h1 {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    margin-bottom: 2rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, var(--primary), var(--secondary), var(--primary));
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: shimmer 3s linear infinite;
-        }
-
-
-
-
-
-footer {
-    background: #0a0806;
-    border-top: 1px solid var(--border);
-    padding: 40px 5% 20px;
-    margin-top: auto;
-    text-align: center;
 }
 
- .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .footer-section h4 {
-            color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .footer-section p, .footer-section a {
-            color: #887a6d;
-            font-size: 0.9rem;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 8px;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: var(--primary);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            color: #554d45;
-            font-size: 0.8rem;
-        }
-
+@keyframes shimmer { 100% { background-position: 200% center; } }
 
 /* ==========================================
-   LAYOUT & FORM COMPONENTS
+   CONTACT PAGE IDENTIFICATION
+   ========================================== */
+.contact-container {
+    flex: 1;
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.contact-info h1 {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    color: #ccbba6;
+    margin-bottom: 30px;
+}
+
+.info-item {
+    margin-bottom: 20px;
+}
+
+.info-item h4 {
+    color: var(--secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.contact-form {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, var(--secondary), var(--primary));
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.submit-btn:hover { transform: scale(1.02); }
+
+/* ==========================================
+   CALCULATOR & CONTAINER COMPONENTS
    ========================================== */
 .container {
     background: rgba(30,27,24,0.9);
@@ -211,56 +228,45 @@ footer {
     padding: var(--spacing-xl);
     border-radius: var(--card-radius);
     max-width: var(--container-max);
-    width: 95%; /* Better for mobile */
+    width: 95%;
     margin: 40px auto;
     border: 1px solid var(--border);
     box-shadow: 0 20px 80px rgba(0,0,0,0.8);
 }
 
-.header-section { text-align: center; margin-bottom: var(--spacing-xl); }
-.header-section h1 {
-    background: linear-gradient(45deg, var(--primary), var(--secondary), var(--primary));
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: var(--font-large);
-    font-weight: 800;
-    animation: shimmer 3s linear infinite;
+.about-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
 }
-/* index page about*/
- .about-section {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        }
 
-        .about-section p {
-            font-size: 1.15rem;
-            color: #ccbba6;
-            line-height: 1.8;
-            margin: 0;
-        }
-
-
-
-@keyframes shimmer { 100% { background-position: 200% center; } }
+.about-section p {
+    font-size: 1.15rem;
+    color: #ccbba6;
+    line-height: 1.8;
+    margin: 0;
+}
 
 .form-grid { display: grid; grid-template-columns: 1fr; gap: var(--spacing-md); }
 @media (min-width:600px){ .form-grid { grid-template-columns: 1fr 1fr; } }
 
 label { display: block; margin-bottom: 5px; color: #ccbba6; font-size: 0.9rem; }
-input, select { 
+
+input, select, textarea { 
     width: 100%; 
     padding: 12px; 
     background: var(--input-bg); 
     border: 1px solid var(--border); 
     border-radius: var(--border-radius); 
     color: #fff; 
+    font-family: inherit;
 }
+
+textarea { height: 120px; resize: vertical; }
 
 .calculate-btn { 
     width: 100%; 
@@ -277,9 +283,6 @@ input, select {
 
 .calculate-btn:active { transform: scale(0.98); }
 
-/* ==========================================
-   DIAGNOSTIC RESULTS BOX
-   ========================================== */
 .result-box {
     margin-top: 1.5rem;
     padding: var(--spacing-xl);
@@ -296,13 +299,64 @@ input, select {
 .value.replace { color: var(--red); font-weight: bold; }
 
 /* ==========================================
-   PRINT STYLES (The Report)
+   FOOTER & PRINT STYLES
    ========================================== */
+footer {
+    background: #0a0806;
+    border-top: 1px solid var(--border);
+    padding: 40px 5% 20px;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.footer-section h4 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-section p, .footer-section a {
+    color: #887a6d;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover { color: var(--primary); }
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    color: #554d45;
+    font-size: 0.8rem;
+}
+
+/* RTL & RESPONSIVE */
+[dir="rtl"] .nav-links { flex-direction: row-reverse; }
+[dir="rtl"] .dropdown-menu { right: auto; left: 0; }
+
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .contact-container { margin: 30px auto; }
+}
+
 @media print {
     nav, .nav-links, .calculate-btn, footer, .header-section, .form-grid { display: none !important; }
     body { background: white !important; color: black !important; padding: 0; }
     .container { border: none !important; box-shadow: none !important; background: white !important; width: 100% !important; max-width: 100%; }
-    
     .result-box {
         display: block !important;
         border: 2px solid var(--primary) !important;

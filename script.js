@@ -1,6 +1,8 @@
 const translations = {
     en: {
         home: "Home",
+        contact:"Contact Us",
+
         tools: "Tools ▼",
         cap_check: "Capacitor Check",
         run_cap: "Running Capacitor Calculator",
@@ -22,11 +24,23 @@ const translations = {
         capacitor_warning:"⚠️ DANGER:Ensure capacitor is fully discharged  before testing to prevent electrical shock.",
         analysis_result:"Analysis Result",
         status:"Status",
+        getintouch:"Get in Touch",
+        email:"Email Support",
+        fullname:"Full Name",
+        emailaddress:"Email Address",
+        subject:"Subject",
+        message:"Message",
+        sendmessage:"SEND MESSAGE",
+        whatweprovide:"Dedicated to providing professional field technicians with the most accurate and efficient diagnostic tools in the industry.",
+        contactfooter:"Contact Us",
+        legal:"Legal",
+        privacy:"Privacy Policy",
 
 
     },
     ar: {
         home: "الرئيسية",
+        contact:"اتصل بنا",
         tools: "الأدوات ▼",
         cap_check: "فحص المكثف",
         run_cap: "حاسبة مكثف التشغيل",
@@ -48,6 +62,18 @@ const translations = {
         capacitor_warning:"⚠️ تحذير مهم : تأكد من تفريغ شحنة المكثف تماماً قبل البدء بالفحص لتجنب الصعق الكهربائي.",
         analysis_result:"نتيجة الفحص",
         status:"الحاله",
+        getintouch:"للتواصل",
+        email:"بريدنا الاكتروني",
+        fullname:"الاسم الكامل",
+        emailaddress:"بريدك الالكتروني",
+        subject:"عنوان الرساله",
+        message:"الرساله",
+        sendmessage:"ارسل الرساله",
+        whatweprovide:"نكرس جهودنا لتزويد الفنيين الميدانيين بأدوات التشخيص الأكثر دقة وكفاءة في هذا القطاع.",
+        contactfooter:"اتصل بنا",
+        legal:"الشؤون القانونية",
+        privacy:"سياسة الخصوصية",
+
         }
 };
 
