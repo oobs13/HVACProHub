@@ -214,7 +214,7 @@ function calculateCapacitor() {
     standards.forEach(s => {
         if(Math.abs(capacitance - s) < Math.abs(capacitance - nearest)) nearest = s;
     });
-
+    
     const resultBox = document.getElementById('resultBox');
     if (resultBox) {
         resultBox.style.display = 'block';
