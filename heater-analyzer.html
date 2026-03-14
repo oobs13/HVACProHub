@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" id="body-tag" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Heater Analyzer | HVACProHub</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo" data-key="home">HVACProHub</a>
+        <div class="nav-links">
+            <a href="index.html" data-key="home">Home</a>
+            <div class="dropdown-parent">
+                <a href="#" data-key="tools">Tools ▼</a>
+                <div class="dropdown-menu">
+                    <a href="capacitor-check.html" data-key="cap_check">Capacitor Check</a>
+                    <a href="#" data-key="load_calc">Heater Analyzer</a>
+                </div>
+            </div>
+            <a href="#" data-key="contact">Contact Us</a>
+            <button class="lang-btn" id="lang-switch">العربية</button>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <h1 data-key="hero_title">Precision HVAC Diagnostics</h1>
+        
+        <div class="container" id="printable-area">
+            <h2 style="color: var(--primary); margin-bottom: 20px;" data-key="load_calc">Heater & Electrical Analyzer</h2>
+            
+            <div class="form-grid no-print">
+                <div class="form-group">
+                    <label>Total Nameplate Watts</label>
+                    <input type="number" id="watts" inputmode="decimal" placeholder="e.g. 4000">
+                </div>
+                <div class="form-group">
+                    <label>Voltage (Phase-to-Phase)</label>
+                    <input type="number" id="volts" inputmode="decimal" placeholder="e.g. 220">
+                </div>
+                <div class="form-group">
+                    <label>Wire Diameter (mm)</label>
+                    <input type="number" id="mm" inputmode="decimal" placeholder="1.3" step="0.1">
+                </div>
+            </div>
+
+            <button class="calculate-btn no-print" onclick="calculateHeater()">ANALYZE SYSTEM</button>
+
+            <div id="results" class="result-box">
+                <div class="res-val" id="main-result">--</div>
+                <div class="detail-row">
+                    <span>Watts Per Phase</span>
+                    <span id="res-watts">0 W</span>
+                </div>
+                <div class="detail-row">
+                    <span>Resistance Needed</span>
+                    <span id="res-ohms">0 Ω</span>
+                </div>
+                <div class="detail-row">
+                    <span>Required Length (mm)</span>
+                    <span id="res-mm" style="color: var(--primary); font-weight: bold;">0 mm</span>
+                </div>
+                <div class="detail-row">
+                    <span>Line Amperage</span>
+                    <span id="res-amps">0 A</span>
+                </div>
+                
+                <button class="calculate-btn no-print" onclick="generatePDF()" style="background: var(--text); color: #000; margin-top: 20px;">
+                    📥 DOWNLOAD PDF REPORT
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

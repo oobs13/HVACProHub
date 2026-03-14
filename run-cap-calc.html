@@ -1,187 +1,78 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="theme-color" content="#FF8800">
-    <title>⚡ Running Capacitor Calculator</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="appTitle">⚡ حاسبة مكثف التشغيل</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body id="body-tag">
 
 <nav>
     <p class="logo">⚡ HVACProHub</p>
     <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html" data-key="home">الرئيسية</a></li>
+        
         <li class="dropdown-parent">
-            <a href="#">Tools ▼</a>
+            <a href="#" data-key="tools">الأدوات ▼</a>
             <div class="dropdown-menu">
-                <a href="capacitor-check.html">Capacitor Check</a>
-                <a href="run-cap-calc.html">Running Capacitor Calculator</a>
-                <a href="compressor-id.html">Compressor Terminal ID</a>
-                <a href="charging-calc.html">Sub-Cool & Super-Heat</a>
-                <a href="load-analyzer.html">Load & Electrical Analyzer</a>
+                <a href="capacitor-check.html" data-key="cap_check">فحص المكثف</a>
+                <a href="run-cap-calc.html" data-key="run_cap">حاسبة مكثف التشغيل</a>
+                <a href="compressor-id.html" data-key="comp_id">تحديد أطراف الضاغط</a>
+                <a href="charging-calc.html" data-key="sub_cool">حاسبة التبريد الفائق</a>
+                <a href="load-analyzer.html" data-key="load_calc">محلل الأحمال الكهربائية</a>
             </div>
         </li>
-        <li><button id="lang-switch" class="lang-btn" onclick="toggleLang()">العربية</button></li>
+        
+        <li><a href="contact.html" data-key="contact">اتصل بنا</a></li>
+        <li><button id="lang-switch" class="lang-btn">English</button></li>
     </ul>
 </nav>
 
 <div class="container">
     <div class="header-section">
-        <h1 id="appTitle">⚡ Running Capacitor Calculator</h1>
-        <p class="subtitle" id="appSubtitle">Single-Phase Motor Analysis</p>
+        <h1 data-key="appTitle">⚡ حاسبة مكثف التشغيل</h1>
+        <p class="subtitle" data-key="appSubtitle">تحليل المحرك أحادي الطور</p>
     </div>
 
     <div class="form-grid">
-        <div class="full-width">
-            <label id="lblWatts">Motor Power (Watts)</label>
-            <input type="number" id="watts" placeholder="e.g., 750">
+        <div class="input-group">
+            <label data-key="motor_hp">القدره الحصانيه للمحرك</label>
+            <select id="hp_value">
+                <option value="0.125">1/8 HP</option>
+                <option value="0.25">1/4 HP</option>
+                <option value="0.5" selected>1/2 HP</option>
+                <option value="0.75">3/4 HP</option>
+                <option value="1">1 HP</option>
+            </select>
         </div>
-        <div>
-            <label id="lblVoltage">Voltage (V)</label>
-            <input type="number" id="voltage" placeholder="220">
-        </div>
-        <div>
-            <label id="lblFrequency">Frequency (Hz)</label>
-            <select id="frequency">
-                <option value="50">50 Hz</option>
-                <option value="60">60 Hz</option>
+        <div class="input-group">
+            <label data-key="lblVoltage">الجهد (فولت)</label>
+            <select id="motor_voltage">
+                <option value="120">120V</option>
+                <option value="240" selected>240V</option>
             </select>
         </div>
     </div>
 
-    <div class="formula-box">
-        <strong id="formulaTitle">Formula:</strong><br>
-        <code id="formulaText">C (μF) = (Watts × 1,000,000) ÷ (2 × π × Hz × Volts²)</code>
-    </div>
+    <button class="calculate-btn" onclick="calculateRunCap()" data-key="btnCalculate">⚡ احسب المكثف</button>
 
-    <button class="calculate-btn" onclick="calculateCapacitor()" id="btnCalculate">⚡ Calculate Capacitor</button>
-
-    <div class="result-box" id="resultBox">
-        <div style="text-transform:uppercase; letter-spacing: 1px; font-size: 0.8rem; color: #ccbba6;" id="resultTitle">Analysis Result</div>
-        <div class="res-val" id="capValue">0.00 μF</div>
+    <div class="result-box" id="runCapResultBox" style="display:none;">
+        <div data-key="resultTitle" class="result-label">نتائج التحليل</div>
+        <div class="res-val" id="uFResult">0 uF</div>
         
-        <div id="detailsArea">
-            <div class="detail-row"><span class="label" id="lblStandard">Standard Value</span><span id="standardValue">-</span></div>
-            <div class="detail-row"><span class="label" id="lblMin">Minimum Range</span><span id="minValue">-</span></div>
-            <div class="detail-row"><span class="label" id="lblMax">Maximum Range</span><span id="maxValue">-</span></div>
-        </div>
-
-        <div class="advice-box" id="adviceBox">✅ Calculation Ready</div>
+        <button class="print-btn" onclick="triggerPrint()" data-key="printBtn">
+            🖨️ طباعة التقرير
+        </button>
     </div>
 </div>
 
 <footer>
-    <div class="footer-content">
-        <div class="footer-section">
-            <h4>HVACProHub</h4>
-            <p>Professional grade tools for field technicians and engineers.</p>
-        </div>
-        <div class="footer-section">
-            <h4>Quick Links</h4>
-            <a href="index.html">Home</a>
-            <a href="capacitor-check.html">Diagnostics</a>
-        </div>
-        <div class="footer-section">
-            <h4>Support</h4>
-            <p>Safety First: Always discharge capacitors before testing.</p>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        &copy; 2026 HVACProHub | Diagnostic Tools Suite
+    <div class="footer-bottom" data-key="footer_copy">
+        &copy; 2026 HVACProHub. جميع الحقوق محفوظة.
     </div>
 </footer>
 
-<script>
-    // [JavaScript Logic from your previous code stays here]
-    const translations = {
-        en: {
-            appTitle: '⚡ Running Capacitor Calculator',
-            appSubtitle: 'Single-Phase Motor Analysis',
-            lblWatts: 'Motor Power (Watts)',
-            lblVoltage: 'Voltage (V)',
-            lblFrequency: 'Frequency (Hz)',
-            btnCalculate: '⚡ Calculate Capacitor',
-            resultTitle: 'Analysis Result',
-            lblStandard: 'Suggested Standard',
-            lblMin: 'Lower Tolerance (-5%)',
-            lblMax: 'Upper Tolerance (+5%)',
-            adviceOk: '✅ Nearest standard match found.',
-            adviceWarn: '⚠️ Value is unconventional. Check motor nameplate.',
-            langNav: 'العربية'
-        },
-        ar: {
-            appTitle: '⚡ حاسبة مكثف التشغيل',
-            appSubtitle: 'تحليل المحرك أحادي الطور',
-            lblWatts: 'قدرة المحرك (واط)',
-            lblVoltage: 'الجهد (فولت)',
-            lblFrequency: 'التردد (هرتز)',
-            btnCalculate: '⚡ احسب المكثف',
-            resultTitle: 'نتائج التحليل',
-            lblStandard: 'القيمة القياسية المقترحة',
-            lblMin: 'الحد الأدنى (-5%)',
-            lblMax: 'الحد الأقصى (+5%)',
-            adviceOk: '✅ تم العثور على أقرب مطابقة قياسية.',
-            adviceWarn: '⚠️ القيمة غير تقليدية. افحص لوحة بيانات المحرك.',
-            langNav: 'English'
-        }
-    };
-
-    let currentLang = 'en';
-
-    function toggleLang() {
-        currentLang = (currentLang === 'en') ? 'ar' : 'en';
-        document.body.dir = (currentLang === 'ar') ? 'rtl' : 'ltr';
-        const t = translations[currentLang];
-        document.getElementById('appTitle').innerText = t.appTitle;
-        document.getElementById('appSubtitle').innerText = t.appSubtitle;
-        document.getElementById('lblWatts').innerText = t.lblWatts;
-        document.getElementById('lblVoltage').innerText = t.lblVoltage;
-        document.getElementById('lblFrequency').previousElementSibling.innerText = t.lblFrequency;
-        document.getElementById('btnCalculate').innerText = t.btnCalculate;
-        document.getElementById('resultTitle').innerText = t.resultTitle;
-        document.getElementById('lblStandard').innerText = t.lblStandard;
-        document.getElementById('lblMin').innerText = t.lblMin;
-        document.getElementById('lblMax').innerText = t.lblMax;
-        document.getElementById('lang-switch').innerText = t.langNav;
-    }
-
-    function calculateCapacitor() {
-        const watts = parseFloat(document.getElementById('watts').value);
-        const voltage = parseFloat(document.getElementById('voltage').value);
-        const frequency = parseInt(document.getElementById('frequency').value);
-
-        if(!watts || !voltage) {
-            alert("Please enter valid power and voltage values.");
-            return;
-        }
-
-        const capacitance = (watts * 1000000) / (2 * Math.PI * frequency * Math.pow(voltage, 2));
-        const min = capacitance * 0.95;
-        const max = capacitance * 1.05;
-
-        const standards = [1, 1.5, 2, 2.5, 3, 4, 5, 6, 7.5, 10, 12.5, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80];
-        let nearest = standards[0];
-        standards.forEach(s => {
-            if(Math.abs(capacitance - s) < Math.abs(capacitance - nearest)) nearest = s;
-        });
-
-        document.getElementById('resultBox').style.display = 'block';
-        document.getElementById('capValue').innerText = capacitance.toFixed(2) + ' μF';
-        document.getElementById('standardValue').innerText = nearest + ' μF';
-        document.getElementById('minValue').innerText = min.toFixed(2) + ' μF';
-        document.getElementById('maxValue').innerText = max.toFixed(2) + ' μF';
-
-        const adviceBox = document.getElementById('adviceBox');
-        const isGood = (nearest >= min && nearest <= max);
-        adviceBox.innerText = isGood ? translations[currentLang].adviceOk : translations[currentLang].adviceWarn;
-        adviceBox.className = 'advice-box ' + (isGood ? 'advice-ok' : 'advice-warn');
-
-        document.getElementById('resultBox').scrollIntoView({behavior: 'smooth'});
-    }
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
