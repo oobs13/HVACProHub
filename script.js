@@ -144,6 +144,25 @@ document.addEventListener('DOMContentLoaded', () => {
             updateUI(next);
         });
     }
+
+    /* --- ADDED: MOBILE NAVIGATION LOGIC --- */
+    const menuBtn = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuBtn && navLinks) {
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    }
 });
 
 // PWA Service Worker
