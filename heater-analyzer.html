@@ -10,20 +10,32 @@
 <body>
 
     <nav>
-        <a href="#" class="logo" data-key="home">HVACProHub</a>
-        <div class="nav-links">
-            <a href="index.html" data-key="home">Home</a>
-            <div class="dropdown-parent">
-                <a href="#" data-key="tools">Tools ▼</a>
-                <div class="dropdown-menu">
-                    <a href="capacitor-check.html" data-key="cap_check">Capacitor Check</a>
-                    <a href="#" data-key="load_calc">Heater Analyzer</a>
-                </div>
+
+    
+    <button class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <ul class="nav-links">
+        <li><a href="index.html" data-key="home">Home</a></li>
+        <li class="dropdown-parent">
+            <a href="#" data-key="tools">Tools ▼</a>
+            <div class="dropdown-menu">
+                <a href="capacitor-check.html" data-key="cap_check">Capacitor Check</a>
+                <a href="run-cap-calc.html" data-key="run_cap">Running Capacitor Calculator</a>
+                <a href="compressor-id.html" data-key="comp_id">Compressor Terminal ID</a>
+                <a href="charging-calc.html" data-key="sub_cool">Sub-Cool & Super-Heat</a>
+                <a href="load-analyzer.html" data-key="load_calc">Load & Electrical Analyzer</a>
             </div>
-            <a href="#" data-key="contact">Contact Us</a>
-            <button class="lang-btn" id="lang-switch">العربية</button>
-        </div>
-    </nav>
+        </li>
+        <li><a href="contact.html" data-key="contact">Contact Us</a></li>
+        <li><button id="lang-switch" class="lang-btn">العربية</button></li>
+    </ul>
+            <p class="logo">⚡HVACProHub</p>
+
+</nav>
 
     <main class="hero">
         <h1 data-key="hero_title">Precision HVAC Diagnostics</h1>

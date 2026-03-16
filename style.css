@@ -84,7 +84,7 @@ nav {
 .menu-toggle {
     display: none;
     flex-direction: column;
-    gap: 5px;
+    gap: 7px;
     cursor: pointer;
     background: none;
     border: none;
@@ -379,7 +379,7 @@ footer {
     .menu-toggle { display: flex !important; }
 
     .nav-links { 
-        display: none !important; 
+        display: none; 
         position: absolute;
         top: var(--nav-height);
         left: 0;
@@ -403,8 +403,9 @@ footer {
         text-align: center;
     }
 
-    .dropdown-parent { width: 100%; justify-content: center; }
+.dropdown-parent { width: 100%; flex-direction: column; }
     .dropdown-menu { position: static; min-width: 100%; }
+    
     .contact-container { margin: 30px auto; }
 }
 
