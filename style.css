@@ -24,7 +24,7 @@
     --font-large: clamp(1.1rem, 3vw, 1.5rem);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {box-sizing: border-box; margin: 0; padding: 0%; }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -84,7 +84,7 @@ nav {
 .menu-toggle {
     display: none;
     flex-direction: column;
-    gap: 7px;
+    gap: 3px;
     cursor: pointer;
     background: none;
     border: none;
