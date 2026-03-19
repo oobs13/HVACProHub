@@ -126,7 +126,17 @@ nav {
     overflow: hidden;
 }
 
-.dropdown-parent:hover .dropdown-menu { display: flex; }
+/* .dropdown-parent:hover .dropdown-menu { display: flex; } */
+.dropdown-menu.show {
+    display: flex !important;
+}
+
+.nav-links.active {
+    display: flex !important;
+}
+
+
+
 
 .dropdown-menu a {
     padding: 15px 20px;

@@ -109,19 +109,15 @@ const translations = {
 };
 
 /* ================================================================
-   2. UI & LANGUAGE LOGIC
-   ================================================================
-*/
+   2. UI & LANGUAGE LOGIC (CORRECTED)
+   ================================================================ */
 function updateUI(lang) {
     const body = document.getElementById('body-tag');
     const btn = document.getElementById('lang-switch');
 
-    // Switch Direction
     if (body) body.dir = lang === 'ar' ? 'rtl' : 'ltr';
-    // Switch Button Text
     if (btn) btn.textContent = lang === 'ar' ? 'English' : 'العربية';
 
-    // Update all elements with data-key
     document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
         if (translations[lang][key]) {
@@ -133,6 +129,7 @@ function updateUI(lang) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // A. Language Setup
     const savedLang = localStorage.getItem('preferredLang') || 'ar';
     updateUI(savedLang);
 
@@ -143,27 +140,49 @@ document.addEventListener('DOMContentLoaded', () => {
             const next = current === 'en' ? 'ar' : 'en';
             updateUI(next);
         });
+    } // <--- This correctly closes the Language Button block
+
+    // B. Tools Dropdown Click Logic
+    const dropdownParent = document.querySelector('.dropdown-parent');
+    const dropdownToggle = document.querySelector('.dropdown-parent > a');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+
+    if (dropdownToggle && dropdownMenu) {
+        dropdownToggle.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            e.stopPropagation();
+            
+            const isOpened = dropdownMenu.style.display === 'flex';
+            dropdownMenu.style.display = isOpened ? 'none' : 'flex';
+        });
+
+        document.addEventListener('click', (e) => {
+            if (dropdownParent && !dropdownParent.contains(e.target)) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
     }
 
-    /* --- ADDED: MOBILE NAVIGATION LOGIC --- */
+    // C. Mobile Navigation Logic
     const menuBtn = document.getElementById('mobile-menu');
     const navLinks = document.querySelector('.nav-links');
 
     if (menuBtn && navLinks) {
-        menuBtn.addEventListener('click', () => {
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevents click from bubbling
             menuBtn.classList.toggle('active');
             navLinks.classList.toggle('active');
         });
 
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
+        // Close menu when clicking a link (but not the Tools toggle)
+        document.querySelectorAll('.nav-links a:not(.dropdown-parent > a)').forEach(link => {
             link.addEventListener('click', () => {
                 menuBtn.classList.remove('active');
                 navLinks.classList.remove('active');
             });
         });
     }
-});
+}); // <--- This is the ONLY closing bracket for DOMContentLoaded
 
 // PWA Service Worker
 if ('serviceWorker' in navigator) {
