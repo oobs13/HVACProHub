@@ -13,7 +13,7 @@
     --red: #f44336;
     
     /* Responsive Scaling */
-    --nav-height: 50px;
+    --nav-height: 70px;
     --page-padding: clamp(0.75rem, 3vw, 1.5rem);
     --container-max: 800px;
     --border-radius: clamp(0.5rem, 2vw, 1.25rem);
