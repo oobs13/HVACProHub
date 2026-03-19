@@ -387,7 +387,7 @@ footer {
         background: var(--card-bg);
         flex-direction: column;
         gap: 0;
-        height: auto;
+        height: max-height;
         border-bottom: 1px solid var(--border);
         z-index: 10000;
     }
@@ -404,7 +404,7 @@ footer {
     }
 
 .dropdown-parent { width: 100%; flex-direction: column; }
-    .dropdown-menu { position: static; min-width: 100%; }
+    .dropdown-menu { position: static; min-width: 100%;display:none; }
     
     .contact-container { margin: 30px auto; }
 }
