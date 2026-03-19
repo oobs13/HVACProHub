@@ -387,10 +387,12 @@ footer {
 [dir="rtl"] .dropdown-menu { right: auto; left: 0; }
 
 @media (max-width: 768px) {
-    .menu-toggle { display: flex !important; }
+    .menu-toggle { 
+        display: flex !important; 
+    }
 
     .nav-links { 
-        display: none; 
+        display: none; /* JS will toggle this to flex */
         position: absolute;
         top: var(--nav-height);
         left: 0;
@@ -398,11 +400,12 @@ footer {
         background: var(--card-bg);
         flex-direction: column;
         gap: 0;
-        height: max-height;
+        height: auto; /* Fixed: was 'max-height' which is invalid */
         border-bottom: 1px solid var(--border);
         z-index: 10000;
     }
 
+    /* This class is added by your JS */
     .nav-links.active { 
         display: flex !important; 
     }
@@ -414,8 +417,22 @@ footer {
         text-align: center;
     }
 
-.dropdown-parent { width: 100%; flex-direction: column; }
-    .dropdown-menu { position: static; min-width: 100%;display:none; }
+    .dropdown-parent { 
+        width: 100%; 
+        flex-direction: column; 
+    }
+
+    /* This allows the JS to show the dropdown on mobile */
+    .dropdown-menu { 
+        position: static; 
+        min-width: 100%; 
+        display: none; /* JS will toggle this via .style.display or a class */
+    }
+
+    /* Ensures that if you use the 'show' class in JS, it actually works */
+    .dropdown-menu.show {
+        display: flex !important;
+    }
     
     .contact-container { margin: 30px auto; }
 }
