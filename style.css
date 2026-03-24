@@ -108,22 +108,28 @@ nav {
 
 .dropdown-parent {
     position: relative;
-    display: flex;
-    align-items: center;
+    
 }
 
+
+
 .dropdown-menu {
-    display: none;
+    display: none; /* Hidden by default */
     position: absolute;
     top: 100%;
-    right: 0;
+    left: 0;
+    right: auto;
+    min-width: 260px;
+    word-wrap: break-word;
     background: var(--card-bg);
-    border: 1px solid var(--border);
-    min-width: 320px;
+    
     flex-direction: column;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    border-radius: 0 0 8px 8px;
-    overflow: hidden;
+}
+
+[dir="rtl"] .dropdown-menu {
+    right: 0;       /* Reset the left alignment */
+    left: auto;         /* Align to the RIGHT of "Tools" instead */
+    text-align: right; /* Ensure text is right-aligned */
 }
 
 /* .dropdown-parent:hover .dropdown-menu { display: flex; } */
@@ -383,7 +389,20 @@ footer {
 }
 
 /* RTL & RESPONSIVE */
-[dir="rtl"] .nav-links { flex-direction: row-reverse; }
+[dir="rtl"] .nav-links {
+    display: flex;
+    direction: rtl;            /* Sets text and flow from Right-to-Left */
+    justify-content: flex-start; /* Aligns them to the 'start' (which is now the Right) */
+    list-style: none;
+    padding: 0;
+}
+
+.nav-links li {
+    /* Use margin-left for spacing in Arabic 
+       so the gap is between the words */
+    margin-left: 20px; 
+}
+
 [dir="rtl"] .dropdown-menu { right: auto; left: 0; }
 
 @media (max-width: 768px) {
@@ -402,7 +421,7 @@ footer {
         gap: 0;
         height: auto; /* Fixed: was 'max-height' which is invalid */
         border-bottom: 1px solid var(--border);
-        z-index: 10000;
+        z-index: 100;
     }
 
     /* This class is added by your JS */
@@ -411,8 +430,9 @@ footer {
     }
 
     .nav-links a {
+        top: 0;
         width: 100%;
-        padding: 20px;
+        padding: 10px;
         border-bottom: 1px solid rgba(255,255,255,0.05);
         text-align: center;
     }
@@ -424,7 +444,8 @@ footer {
 
     /* This allows the JS to show the dropdown on mobile */
     .dropdown-menu { 
-        position: static; 
+        
+        position: relative; 
         width: 100%; 
         top:100%; 
         left: 0;
