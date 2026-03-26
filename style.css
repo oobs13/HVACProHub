@@ -446,10 +446,9 @@ footer {
     /* This allows the JS to show the dropdown on mobile */
     .dropdown-menu { 
         
-        position: absolute; 
+        position: relative; 
         width: 100%; 
         top:100%; 
-        left: 0;
         background: rgba(0,0,0,0.2);
        border: none;
        z-index: 1000;
