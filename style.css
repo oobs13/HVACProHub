@@ -127,6 +127,7 @@ nav {
 }
 
 [dir="rtl"] .dropdown-menu {
+   display: none; /* Hidden by default */
     right: 0;       /* Reset the left alignment */
     left: auto;         /* Align to the RIGHT of "Tools" instead */
     text-align: right; /* Ensure text is right-aligned */
