@@ -449,6 +449,7 @@ footer {
         position: absolute; 
         width: 100%; 
         top:100%; 
+        left: 0;
         background: rgba(0,0,0,0.2);
        border: none;
        z-index: 1000;
