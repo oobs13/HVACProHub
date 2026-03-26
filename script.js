@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     } // <--- This correctly closes the Language Button block
 
-  // B. Tools Dropdown Click Logic
+ // B. Tools Dropdown Click Logic (REPLACED)
 const dropdownParent = document.querySelector('.dropdown-parent');
 const dropdownToggle = document.querySelector('.dropdown-parent > a');
 const dropdownMenu = document.querySelector('.dropdown-menu');
@@ -152,11 +152,11 @@ if (dropdownToggle && dropdownMenu) {
         e.preventDefault(); 
         e.stopPropagation();
         
-        // Toggle the 'show' class instead of manual style.display
+        // Use classList instead of .style.display
         dropdownMenu.classList.toggle('show');
     });
 
-    // Close menu when clicking anywhere else
+    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
         if (!dropdownParent.contains(e.target)) {
             dropdownMenu.classList.remove('show');

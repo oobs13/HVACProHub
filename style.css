@@ -114,17 +114,16 @@ nav {
 
 
 .dropdown-menu {
-    display: none; /* Hidden by default */
+    display: none !important; /* Force hidden by default */
     position: absolute;
     top: 100%;
     left: 0;
-    right: auto;
     min-width: 260px;
-    word-wrap: break-word;
     background: var(--card-bg);
-    
     flex-direction: column;
+    z-index: 1000;
 }
+
 
 [dir="rtl"] .dropdown-menu {
     right: 0;       /* Reset the left alignment */
