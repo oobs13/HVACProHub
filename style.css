@@ -405,18 +405,16 @@ footer {
         display: flex !important; 
     }
 
-    .nav-links { 
-        display: none; /* JS will toggle this to flex */
+ .nav-links {
+        display: none;
         position: absolute;
         top: var(--nav-height);
         left: 0;
+        right: 0;
         width: 100%;
         background: var(--card-bg);
         flex-direction: column;
-        gap: 0;
-        height: auto; /* Fixed: was 'max-height' which is invalid */
         border-bottom: 1px solid var(--border);
-        z-index: 100;
     }
 
     /* This class is added by your JS */
@@ -443,10 +441,13 @@ footer {
         
         position: relative; 
         width: 100%; 
-        top:100%; 
+        top:0; 
         background: rgba(0,0,0,0.2);
        border: none;
     }
+/* Indent links for better hierarchy */
+    [dir="rtl"] .dropdown-menu a { padding-right: 40px; }
+    [dir="ltr"] .dropdown-menu a { padding-left: 40px; }
 
     /* Ensures that if you use the 'show' class in JS, it actually works */
     .dropdown-menu.show {
