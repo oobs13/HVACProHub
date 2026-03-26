@@ -438,6 +438,7 @@ footer {
     }
 
     .dropdown-parent { 
+        top:100%;
         width: 100%; 
         flex-direction: column; 
     }
@@ -448,9 +449,9 @@ footer {
         position: relative; 
         width: 100%; 
         top:100%; 
-        left: 0;
         background: rgba(0,0,0,0.2);
-       border: none;;
+       border: none;
+       z-index: 1000;
     }
 
     /* Ensures that if you use the 'show' class in JS, it actually works */
