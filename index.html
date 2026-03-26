@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,33 +11,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <nav>
+        <button class="menu-toggle" id="mobile-menu">
+            <span></span><span></span><span></span>
+        </button>
 
-    
-    <button class="menu-toggle" id="mobile-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-
-    <ul class="nav-links">
-        <li><a href="index.html" data-key="home">Home</a></li>
-        <li class="dropdown-parent">
-            <a href="#" data-key="tools">Tools ▼</a>
-            <div class="dropdown-menu">
-                <a href="capacitor-check.html" data-key="cap_check">Capacitor Check</a>
-                <a href="run-cap-calc.html" data-key="run_cap">Running Capacitor Calculator</a>
-                <a href="compressor-id.html" data-key="comp_id">Compressor Terminal ID</a>
-                <a href="charging-calc.html" data-key="sub_cool">Sub-Cool & Super-Heat</a>
-                <a href="load-analyzer.html" data-key="load_calc">Load & Electrical Analyzer</a>
-            </div>
-        </li>
-        <li><a href="contact.html" data-key="contact">Contact Us</a></li>
-        <li><button id="lang-switch" class="lang-btn">العربية</button></li>
-    </ul>
-      <p class="logo">⚡HVACProHub</p>
-
-</nav>
-
+        <ul class="nav-links">
+            <li><a href="index.html" data-key="home">الرئيسية</a></li>
+            <li class="dropdown-parent">
+                <a href="#" data-key="tools">الأدوات ▼</a>
+                <div class="dropdown-menu">
+                    <a href="capacitor-check.html" data-key="cap_check">فحص المكثف</a>
+                    <a href="run-cap-calc.html" data-key="run_cap">حاسبة مكثف التشغيل</a>
+                    </div>
+            </li>
+            <li><a href="contact.html" data-key="contact">اتصل بنا</a></li>
+            <li><button id="lang-switch" class="lang-btn">English</button></li>
+        </ul>
+        <p class="logo">⚡HVACProHub</p>
+    </nav>
 
 <body dir="ltr" id="body-tag">
 
