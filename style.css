@@ -108,48 +108,44 @@ nav {
 
 .dropdown-parent {
     position: relative;
-    
 }
-
-
 
 .dropdown-menu {
-    display: none !important; /* Force hidden by default */
+    display: none; /* Hidden by default */
     position: absolute;
     top: 100%;
-    left: 0;
-    min-width: 260px;
+    min-width: 240px;
     background: var(--card-bg);
+    border: 1px solid var(--border);
     flex-direction: column;
     z-index: 1000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-
+/* Logic for Arabic (Default) */
 [dir="rtl"] .dropdown-menu {
-    right: 0;       /* Reset the left alignment */
-    left: auto;         /* Align to the RIGHT of "Tools" instead */
-    text-align: right; /* Ensure text is right-aligned */
+    right: 0;
+    left: auto;
+    text-align: right;
 }
 
-/* .dropdown-parent:hover .dropdown-menu { display: flex; } */
+/* Logic for English (Switch) */
+[dir="ltr"] .dropdown-menu {
+    left: 0;
+    right: auto;
+    text-align: left;
+}
+
 .dropdown-menu.show {
     display: flex !important;
 }
 
-.nav-links.active {
-    display: flex !important;
-}
-
-
-
-
 .dropdown-menu a {
+    display: block;
     padding: 15px 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
     color: var(--text);
     text-decoration: none;
-    font-size: 0.9rem;
-    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 .dropdown-menu a:hover { 
