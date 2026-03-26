@@ -453,7 +453,6 @@ footer {
         background: rgba(0,0,0,0.2);
        border: none;
        z-index: 1000;
-       display: none;
     }
 
     /* Ensures that if you use the 'show' class in JS, it actually works */
