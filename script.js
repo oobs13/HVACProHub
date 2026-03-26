@@ -142,26 +142,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     } // <--- This correctly closes the Language Button block
 
-    // B. Tools Dropdown Click Logic
-    const dropdownParent = document.querySelector('.dropdown-parent');
-    const dropdownToggle = document.querySelector('.dropdown-parent > a');
-    const dropdownMenu = document.querySelector('.dropdown-menu');
+  // B. Tools Dropdown Click Logic
+const dropdownParent = document.querySelector('.dropdown-parent');
+const dropdownToggle = document.querySelector('.dropdown-parent > a');
+const dropdownMenu = document.querySelector('.dropdown-menu');
 
-    if (dropdownToggle && dropdownMenu) {
-        dropdownToggle.addEventListener('click', (e) => {
-            e.preventDefault(); 
-            e.stopPropagation();
-            
-            const isOpened = dropdownMenu.style.display === 'flex';
-            dropdownMenu.style.display = isOpened ? 'none' : 'flex';
-        });
+if (dropdownToggle && dropdownMenu) {
+    dropdownToggle.addEventListener('click', (e) => {
+        e.preventDefault(); 
+        e.stopPropagation();
+        
+        // Toggle the 'show' class instead of manual style.display
+        dropdownMenu.classList.toggle('show');
+    });
 
-        document.addEventListener('click', (e) => {
-            if (dropdownParent && !dropdownParent.contains(e.target)) {
-                dropdownMenu.style.display = 'none';
-            }
-        });
-    }
+    // Close menu when clicking anywhere else
+    document.addEventListener('click', (e) => {
+        if (!dropdownParent.contains(e.target)) {
+            dropdownMenu.classList.remove('show');
+        }
+    });
+}
 
     // C. Mobile Navigation Logic
     const menuBtn = document.getElementById('mobile-menu');
